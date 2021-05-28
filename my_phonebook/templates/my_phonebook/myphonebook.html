@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="container mt-4">
+		<div class="raw text-center">
+			<h4 class="display-5 mb-3">My Phonebook</h4>
+			<a href="{% url 'phonenumber_create' %}" class="btn btn-primary" role="button">Add Number</a>
+		</div>
+
+		<div class="raw m-4 text-center">
+			<a href="{% url 'phonebooksearch' word='A' %}">A</a>
+			<a href="{% url 'phonebooksearch' word='B' %}">B</a>
+			<a href="{% url 'phonebooksearch' word='C' %}">C</a>
+			<a href="{% url 'phonebooksearch' word='D' %}">D</a>
+			<a href="{% url 'phonebooksearch' word='E' %}">E</a>
+			<a href="{% url 'phonebooksearch' word='F' %}">F</a>
+			<a href="{% url 'phonebooksearch' word='G' %}">G</a>
+			<a href="{% url 'phonebooksearch' word='H' %}">H</a>
+			<a href="{% url 'phonebooksearch' word='I' %}">I</a>
+			<a href="{% url 'phonebooksearch' word='J' %}">J</a>
+			<a href="{% url 'phonebooksearch' word='K' %}">K</a>
+			<a href="{% url 'phonebooksearch' word='L' %}">L</a>
+			<a href="{% url 'phonebooksearch' word='M' %}">M</a>
+			<a href="{% url 'phonebooksearch' word='N' %}">N</a>
+			<a href="{% url 'phonebooksearch' word='O' %}">O</a>
+			<a href="{% url 'phonebooksearch' word='P' %}">P</a>
+			<a href="{% url 'phonebooksearch' word='Q' %}">Q</a>
+			<a href="{% url 'phonebooksearch' word='R' %}">R</a>
+			<a href="{% url 'phonebooksearch' word='S' %}">S</a>
+			<a href="{% url 'phonebooksearch' word='T' %}">T</a>
+			<a href="{% url 'phonebooksearch' word='U' %}">U</a>
+			<a href="{% url 'phonebooksearch' word='V' %}">V</a>
+			<a href="{% url 'phonebooksearch' word='W' %}">W</a>
+			<a href="{% url 'phonebooksearch' word='X' %}">X</a>
+			<a href="{% url 'phonebooksearch' word='Y' %}">Y</a>
+			<a href="{% url 'phonebooksearch' word='Z' %}">Z</a>
+			<a href="{% url 'myphonebook'%}">[ALL]</a>
+		</div>
+
+		<div class="container mt-4">
+				<div class="d-flex justify-content-center text-center">
+					<table class="table table-bordered table-primary">
+						<thead>
+							<tr> 
+			                    <th scope="col">Person name</td> 
+			                    <th scope="col">Phone number</td> 
+			                    <th scope="col">Person email</td> 
+			                 	<th scope="col"> С </td> 
+			                    <th scope="col"> X </td> 
+			                    <th scope="col"> Share </td> 
+			                </tr> 
+						</thead>
+							<tbody>
+								{% for phonenumber in phonenumbers_list %}
+									<tr scope="row">
+										<td>{{ phonenumber.person_name }}</td>
+										<td><a href="{% url 'phonenumber_detail' phonenumber.pk %}"> {{ phonenumber.phone_number }} </a></td>
+										<td>{{ phonenumber.person_email }}</td>
+										<td> <a href="{% url 'phonenumber_update' phonenumber.pk %}" class="btn btn-success" role="button">Change</a></td>
+										<td> <a href="{% url 'phonenumber_delete' phonenumber.pk %}" class="btn btn-danger" role="button">Delete Number</a></td>
+										<td>
+										<a href="{% url 'sendnumber' phonenumber.pk %}" class="btn btn-info" role="button">Share to chat</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+{% endblock content %}

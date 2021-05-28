@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Phonebook homepage{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+	<div class="container mx-auto justify-content-center">
+		<img src="{% static 'phonebook.png'%}" class="mt-5 mx-auto d-block" width="25%" height="25%" alt="Error!">
+	</div>
+	<div class="container mt-3 w-100">
+			{% if user.is_authenticated %}
+				<h3 class="text-center"> Welcome to the Phonebook Web Application, <em><b>{{ user.username }}</b></em>! </h3>
+			{% else %}
+				<h3 class="text-center"> Welcome to the Phonebook Web Application! </h3>
+			{% endif %}
+			<div class="mt-3">
+				<p class="text-center">This site is designed in the form of an electronic phone book. Features such as adding, deleting, changing and searching for phone numbers alphabetically are available to you.</p>
+			</div>
+			<div class="mt-3 justify-content-center w-100">
+				<div class="col-md-12 text-center">
+					{% if user.is_authenticated %}
+						<a href="{% url 'myphonebook' %}" class="btn btn-primary" role="button">My phonebook</a> 
+						<a href="{% url 'myprofile' %}" class="btn btn-primary" role="button">My profile</a> 
+					{% else %}
+						<a href="{% url 'login' %}" class="btn btn-primary mr-5" role="button">Log in</a>
+						<a href="{% url 'signup' %}" class="btn btn-primary" role="button">Sign up</a> 
+					{% endif %}
+				</div>
+			</div>
+	</div>
+{% endblock content %}
